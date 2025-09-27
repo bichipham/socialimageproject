@@ -23,27 +23,27 @@ export default async function Page({
 
   const { id } = await params
   const post = (await getPost(id)) || [];
-  const { title = "", body = "", tags, user, views = "" } = post || {};
+  const { name = "", description = "", path= "", views = "" } = post || {};
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-6">
       {/* Nội dung Post */}
       <div className="bg-white rounded-xl shadow overflow-hidden">
         <Image
-          src={`https://picsum.photos/id/${id}/640/640`}
-          alt={title}
+          src={path}
+          alt={name}
           className="w-full object-cover"
           width={640}
           height={640}
         />
         <div className="p-6 space-y-4">
-          <h1 className="text-2xl font-bold">{title}</h1>
+          <h1 className="text-2xl font-bold">{name}</h1>
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <span>By Bichi</span>
             <span>{views} views</span>
           </div>
-          <p className="text-gray-700 leading-relaxed">{body}</p>
-          <div className="flex flex-wrap gap-2">
+          <p className="text-gray-700 leading-relaxed">{description}</p>
+          {/* <div className="flex flex-wrap gap-2">
             {tags.map((tag, i) => (
               <span
                 key={i}
@@ -52,7 +52,7 @@ export default async function Page({
                 #{tag}
               </span>
             ))}
-          </div>
+          </div> */}
         </div>
       </div> 
       <CommentList postId={id} />
