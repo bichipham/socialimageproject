@@ -20,9 +20,9 @@ const initialState: AuthState = {
 
 export const login = createAsyncThunk(
   "user/login",
-  async ({ username, password }: { username: string; password: string }, { rejectWithValue }) => {
+  async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      const res = await axiosClient.post("/user/login", { username, password });
+      const res = await axiosClient.post("/user/login", { email, password });
       console.log("Login response:", res);
       const { accessToken, refreshToken, ...rest } = res.data.data;
 

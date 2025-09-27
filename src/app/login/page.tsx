@@ -6,7 +6,7 @@ import { login } from "@/reduxStore/authSlice";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
-  const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -16,9 +16,9 @@ export default function Login() {
 
     // validate
     if (
-      !username.trim() ||
+      !email.trim() ||
       !password.trim() ||
-      username.length < 5 ||
+      email.length < 5 ||
       password.length < 5
     ) {
       toast.success("Username and password are required and length >=5", {
@@ -33,12 +33,12 @@ export default function Login() {
       return;
     }
 
-    const result = await dispatch(login({ username, password }));
+    const result = await dispatch(login({ email, password }));
     //console.log("Login result:", result);
     if (result.type === "user/login/fulfilled") {
       router.push("/newsfeed");
     } else {
-      toast.error("Invalid username or password!");
+      toast.error("Invalid email or password!");
     }
   }
 
@@ -60,8 +60,8 @@ export default function Login() {
         </label>
         <input
           type="email"
-          id="username-input"
-          onChange={(e) => setUsername(e.target.value)}
+          id="email-input"
+          onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           className="border border-gray-400
           h-14  px-4 py-2
