@@ -1,9 +1,8 @@
 export type PostCardProps = {
   id: number
-  image: string
-  title: string
-  body: string
-  tags: string[]
+  path: string
+  name: string
+  description: string
   user: string
   comments: number
   views: number

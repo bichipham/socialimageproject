@@ -11,27 +11,25 @@ export default function NewsFeedPage() {
   const dispatch = useAppDispatch();
   const postsPayload =
     useAppSelector((state) => state?.post?.postsPayload) || [];
-  //console.log("feedposts", postsPayload);
-  const { posts: feedposts } = postsPayload || { posts: [] };
+  console.log("feedposts", postsPayload);
+  const { items } = postsPayload || { posts: [] };
 
   useEffect(() => {
-    if (feedposts.length === 0) {
+    if (items.length === 0) {
       dispatch(fetchPosts());
     }
   }, []);
 
   return (
-     <div className="pt-10 container mx-auto grid grid-cols-12 gap-4 px-4">
-      <LeftPannel />
+     <div className="pt-10 container mx-auto px-4">
       {/* Center column (wider feed) */}
-       <main className="col-span-12 lg:col-span-6 space-y-4">
-        <div className="space-y-4">
-          {feedposts?.map((post: PostCardProps) => (
+       <main className="space-y-4">
+        <div className="space-y-4 grid grid-cols-3 gap-4">
+          {items?.map((post: PostCardProps) => (
             <PostCard key={post?.id} {...post} />
           ))}
         </div>
       </main>
-      <RightPanel />
     </div>
   );
 }

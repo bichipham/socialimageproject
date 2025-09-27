@@ -35,7 +35,7 @@ export default function Login() {
 
     const result = await dispatch(login({ username, password }));
     //console.log("Login result:", result);
-    if (result.type === "auth/login/fulfilled") {
+    if (result.type === "user/login/fulfilled") {
       router.push("/newsfeed");
     } else {
       toast.error("Invalid username or password!");
@@ -56,12 +56,13 @@ export default function Login() {
           {`Login to Beincom's Blog`}
         </h2>
         <label htmlFor="username-input" className="text-lg font-medium">
-          User name:
+          Email:
         </label>
         <input
+          type="email"
           id="username-input"
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="User name"
+          placeholder="Email"
           className="border border-gray-400
           h-14  px-4 py-2
           text-base leading-6
@@ -98,10 +99,6 @@ export default function Login() {
           <a className="text-purple-600 font-medium hover:underline">
             Register here
           </a>
-        </p>
-        <p>
-          {" "}
-          {`Username = "emily" and password = "emilyspass" to login`}
         </p>
       </form>
     </div>

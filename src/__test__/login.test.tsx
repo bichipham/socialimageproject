@@ -75,12 +75,12 @@ describe("Login Page", () => {
         refreshToken: "jwt-refresh-token",
       },
     };
-    (login as jest.Mock).mockReturnValue({ type: "auth/login/pending" });
+    (login as jest.Mock).mockReturnValue({ type: "user/login/pending" });
     mockDispatch.mockResolvedValue(fakeResult);
 
     render(<Login />);
 
-    fireEvent.change(screen.getByLabelText(/user name/i), {
+    fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: "emilys" },
     });
     fireEvent.change(screen.getByLabelText(/password/i), {

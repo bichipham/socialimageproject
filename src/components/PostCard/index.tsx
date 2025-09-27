@@ -6,9 +6,9 @@ import Link from "next/link";
 
 export default function PostCard({
   id,
-  title,
-  body,
-  tags,
+  name,
+  path,
+  description,
   comments,
   views,
 }: PostCardProps) {
@@ -18,19 +18,19 @@ export default function PostCard({
         <Link href={`/post/${id}`}>
           {" "}
           <h2 className="text-2xl font-bold hover:text-blue-600 cursor-pointer">
-            {title}
+            {name}
           </h2>
         </Link>
-        <p className="text-gray-600 text-xl line-clamp-3">{body}</p>
+        <p className="text-gray-600 text-xl line-clamp-3">{description}</p>
         <Image
-          src={`https://picsum.photos/id/${id}/640/640`}
+          src={path}
           className="w-full object-cover"
           width={300}
           height={300}
-          alt={title}
+          alt={name}
         />
         {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        {/* <div className="flex flex-wrap gap-2">
           {tags.map((tag, i) => (
             <span
               key={i}
@@ -39,7 +39,7 @@ export default function PostCard({
               #{tag}
             </span>
           ))}
-        </div>
+        </div> */}
 
         {/* Footer info */}
         <div className="flex items-center justify-between text-sm text-gray-500">

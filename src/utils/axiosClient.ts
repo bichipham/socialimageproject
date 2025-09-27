@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const instance = axios.create({
-  baseURL: "https://dummyjson.com/", // backend
+  baseURL: "http://54.255.248.50/api", // backend
   //withCredentials: true,
 });
 

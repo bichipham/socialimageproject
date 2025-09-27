@@ -32,6 +32,12 @@ const nextConfig: NextConfig = {
         hostname: "group.beincom.com",
         port: "",
         pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "**",
       }
     ]
   },

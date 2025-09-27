@@ -19,11 +19,12 @@ const initialState: AuthState = {
 };
 
 export const login = createAsyncThunk(
-  "auth/login",
+  "user/login",
   async ({ username, password }: { username: string; password: string }, { rejectWithValue }) => {
     try {
-      const res = await axiosClient.post("/auth/login", { username, password });
-      const { accessToken, refreshToken, ...rest } = res.data;
+      const res = await axiosClient.post("/user/login", { username, password });
+      console.log("Login response:", res);
+      const { accessToken, refreshToken, ...rest } = res.data.data;
 
       Cookies.set("accessToken", accessToken);
       Cookies.set("refreshToken", refreshToken);
@@ -36,7 +37,7 @@ export const login = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: "auth",
+  name: "user",
   initialState,
   reducers: {
     logout: (state) => {

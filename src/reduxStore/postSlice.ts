@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axiosClient from "@/utils/axiosClient";
 
-export const fetchPosts = createAsyncThunk("posts", async () => {
-  const res = await axiosClient.get("/posts");
+export const fetchPosts = createAsyncThunk("image", async () => {
+  const res = await axiosClient.get("/image?page=1&size=20");
  return res.data;
 })
 
 type PostPayload = {
-  posts: [],
-  total: number,
-  skip: number,
-  limit: number,
+  items: [],
+  totalItem: number,
+  totalPage: number,
+  page: number,
+  size: number
 }
 
 type PostState = {
@@ -20,16 +21,17 @@ type PostState = {
 
 const initialState: PostState = {
   postsPayload: {
-    posts: [],
-    total: 0,
-    skip: 0,
-    limit: 0,
+    items: [],
+    totalItem: 0,
+    totalPage: 0,
+    page: 0,
+    size: 0
   },
-  loading: false,
+  loading: false
 }
 
 const postSlice = createSlice({
-  name: "posts",
+  name: "image",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -38,7 +40,7 @@ const postSlice = createSlice({
         state.loading = true
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.postsPayload = action.payload
+        state.postsPayload = action?.payload?.data
         state.loading = false
       })
   },
